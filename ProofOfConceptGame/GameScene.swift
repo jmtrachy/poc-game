@@ -30,7 +30,7 @@ class GameScene: SKScene {
         renderGame(gpInfo!)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    func touchesBegan(withEvent event: UIEvent) {
         /* Called when a touch begins */
     }
     
@@ -47,7 +47,7 @@ class GameScene: SKScene {
     }
     
     // Loop through the shapes and call drawShape on each
-    func drawShapes(shapes: Shape[]) {
+    func drawShapes(shapes: [Shape]) {
         for s in shapes {
             drawShape(s)
         }

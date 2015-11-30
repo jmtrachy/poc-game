@@ -10,13 +10,13 @@ import Foundation
 
 class GameplayInfo {
     
-    var shapes: Shape[]
+    var shapes: [Shape]
     var timeLastShapeCreated: CFTimeInterval?
     var lastUpdateTime: CFTimeInterval
     var currentTime: CFTimeInterval
     
     init() {
-        shapes = Shape[]()
+        shapes = [Shape]()
         currentTime = CFTimeInterval()
         lastUpdateTime = CFTimeInterval()
     }

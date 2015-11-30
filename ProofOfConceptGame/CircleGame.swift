@@ -29,7 +29,7 @@ class CircleGame : GameplayService {
         deleteMaxCircles(gpInfo)
     }
     
-    func growShapes(shapes: Shape[]) {
+    func growShapes(shapes: [Shape]) {
         for s in shapes {
             s.grow()
         }
@@ -37,7 +37,7 @@ class CircleGame : GameplayService {
     
     func deleteMaxCircles(gpInfo: GameplayInfo) {
         
-        var recordsToDelete = Int[]()
+        var recordsToDelete = [Int]()
         var counter = 0
         for s in gpInfo.shapes {
             if s.exceededMaxSize() {
@@ -45,14 +45,14 @@ class CircleGame : GameplayService {
             }
             counter++
         }
-        recordsToDelete = recordsToDelete.reverse()
+        recordsToDelete = Array(recordsToDelete.reverse())
         for i in recordsToDelete {
             gpInfo.shapes.removeAtIndex(i);
         }
     }
     
     func createShape(gpInfo: GameplayInfo) {
-        var s: Shape = createRandomCircle(gpInfo)
+        let s: Shape = createRandomCircle(gpInfo)
         gpInfo.shapes.append(s)
         gpInfo.timeLastShapeCreated = gpInfo.currentTime
     }
@@ -62,7 +62,7 @@ class CircleGame : GameplayService {
         var newX: Int
         var newY: Int
         var attempts = 0
-        do {
+        repeat {
             newX = Int(arc4random_uniform(320))
             newY = Int(arc4random_uniform(568))
             validPoint = isNewShapeValid(newX, yPos: newY, shapes: gpInfo.shapes)
@@ -75,7 +75,7 @@ class CircleGame : GameplayService {
         return Circle(x: xPos, y: yPos)
     }
     
-    func isNewShapeValid(xPos: Int, yPos: Int, shapes: Shape[]) -> Bool {
+    func isNewShapeValid(xPos: Int, yPos: Int, shapes: [Shape]) -> Bool {
         var overlapsExistingCircle = false
         var counter = 0
         
@@ -98,7 +98,7 @@ class CircleGame : GameplayService {
     // generate algorithm for determining whether or not to create a new shape
     func shouldCreateAdditionalShape(gpInfo: GameplayInfo) -> Bool {
         
-        var shapes = gpInfo.shapes
+        let shapes = gpInfo.shapes
         var probability: Int = 0
         var probabilityByShapeCount: Int = 0
         var probabilityByTime: Int = 0
@@ -112,15 +112,15 @@ class CircleGame : GameplayService {
         }
         
         // Determine the probability a shape will be created based on the length of time since the last shape was created
-        if gpInfo.timeLastShapeCreated {
-            var timeElapsed = gpInfo.currentTime - gpInfo.timeLastShapeCreated!
+        if (gpInfo.timeLastShapeCreated != nil) {
+            let timeElapsed = gpInfo.currentTime - gpInfo.timeLastShapeCreated!
             if timeElapsed < 1.0 {
                 probabilityByTime = 0
             } else {
                 probabilityByTime = Int(timeElapsed * 10)
             }
             
-            println("probabiltyByTime = \(probabilityByTime); timeElapsed = \(timeElapsed)")
+            print("probabiltyByTime = \(probabilityByTime); timeElapsed = \(timeElapsed)")
         } else {
             probabilityByTime = 100
         }

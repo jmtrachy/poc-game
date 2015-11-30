@@ -12,21 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
-
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-        // Override point for customization after application launch.
-        //testCallingCircleService();
-        return true
-    }
     
     func testCallingCircleService() {
-        var cService = CircleService()
-        println("Circles size A = \(cService.circles.count) with center point of (\(cService.circles[0].xCoord), \(cService.circles[0].yCoord))")
+        let cService = CircleService()
+        print("Circles size A = \(cService.circles.count) with center point of (\(cService.circles[0].xCoord), \(cService.circles[0].yCoord))")
         cService.createRandomCircle()
-        println("Circles size B = \(cService.circles.count) with center point of (\(cService.circles[1].xCoord), \(cService.circles[1].yCoord))")
+        print("Circles size B = \(cService.circles.count) with center point of (\(cService.circles[1].xCoord), \(cService.circles[1].yCoord))")
         cService.createRandomCircle()
-        println("Circles size C = \(cService.circles.count) with center point of (\(cService.circles[2].xCoord), \(cService.circles[2].yCoord))")
+        print("Circles size C = \(cService.circles.count) with center point of (\(cService.circles[2].xCoord), \(cService.circles[2].yCoord))")
     }
 
     func applicationWillResignActive(application: UIApplication) {

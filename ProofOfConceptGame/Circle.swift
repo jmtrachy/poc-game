@@ -45,7 +45,7 @@ class Circle : Shape {//, Growable {
     
     // Draws the shape - should the line width or glow width be adjustable here?
     func draw() -> SKShapeNode {
-        var circle = SKShapeNode(circleOfRadius: self.currentRadius);
+        let circle = SKShapeNode(circleOfRadius: CGFloat(self.currentRadius));
         circle.strokeColor = self.strokeColor
         circle.fillColor = self.fillColor
         circle.lineWidth = 1.0

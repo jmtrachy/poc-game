@@ -10,12 +10,12 @@ import Foundation
 
 class CircleService {
     
-    var circles: Circle[];
+    var circles: [Circle];
     var circleCallCounter = 0;
     let canvasSize = (200, 200);
     
     init () {
-        circles = Circle[]()
+        circles = [Circle]()
         //createCenteredCircle()
     }
         
@@ -25,7 +25,7 @@ class CircleService {
     }
 
     func createCircle(xPos: Int, yPos: Int) -> Circle {
-        var circle = Circle(x: xPos, y: yPos)
+        let circle = Circle(x: xPos, y: yPos)
         circles.append(circle)
         return circle
     }
@@ -35,7 +35,7 @@ class CircleService {
         var newX: Int
         var newY: Int
         var attempts = 0
-        do {
+        repeat {
             newX = Int(arc4random_uniform(320))
             newY = Int(arc4random_uniform(568))
             validPoint = isNewCircleValid(newX, yPos: newY)
